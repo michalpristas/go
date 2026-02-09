@@ -142,7 +142,7 @@ func makeFileNotReadable(t *testing.T, name string) {
 		entryForSid(everyoneSID),
 	}
 
-	var oldAcl, newAcl syscall.Handle
+	var oldAcl, newAcl *windows.ACL
 	if err := windows.SetEntriesInAcl(
 		uint32(len(entries)),
 		&entries[0],
@@ -160,7 +160,7 @@ func makeFileNotReadable(t *testing.T, name string) {
 		nil,
 		nil,
 		newAcl,
-		0,
+		nil,
 	); err != nil {
 		t.Fatal(err)
 	}

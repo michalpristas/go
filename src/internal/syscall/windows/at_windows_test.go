@@ -131,7 +131,7 @@ func makeFileNotReadable(t *testing.T, name string) {
 			Inheritance:       windows.SUB_CONTAINERS_AND_OBJECTS_INHERIT,
 			Trustee: windows.TRUSTEE{
 				TrusteeForm: windows.TRUSTEE_IS_SID,
-				Name:        (*uint16)(unsafe.Pointer(sid)),
+				Name:        (uintptr)(unsafe.Pointer(sid)),
 			},
 		}
 	}
